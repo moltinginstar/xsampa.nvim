@@ -2,11 +2,14 @@
 
 An X-SAMPA ↔ IPA converter for Neovim.
 
+<img width="631" height="170" alt="IPA to X-SAMPA" src="https://github.com/user-attachments/assets/f2857d18-8338-4f24-9202-4e0c974339ca" />
+
 ## Installation
 
 ### `lazy.nvim`
 
 ```lua
+
 {
   "moltinginstar/xsampa.nvim",
   opts = {},

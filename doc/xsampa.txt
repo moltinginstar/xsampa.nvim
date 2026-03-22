@@ -1,0 +1,75 @@
+*xsampa.txt* An X-SAMPA ↔ IPA converter for Neovim.
+
+==============================================================================
+CONTENTS                                                          *xsampa-toc*
+
+1. Introduction .......................................... |xsampa-intro|
+2. Commands .............................................. |xsampa-cmds|
+3. Notes ................................................. |xsampa-notes|
+4. API ................................................... |xsampa-api|
+
+==============================================================================
+INTRODUCTION                                                    *xsampa-intro*
+
+xsampa.nvim provides:
+- an interactive floating converter panel
+- X-SAMPA -> IPA conversion
+- IPA -> X-SAMPA conversion
+- selection copy/replace helpers
+
+==============================================================================
+COMMANDS                                                         *xsampa-cmds*
+
+:XSampa [ipa]
+    Open the converter panel.
+    Without an argument, X-SAMPA is the source field.
+    Use "ipa" to start in IPA-first mode.
+
+:[range]XSampaConvert[!] [ipa]
+    Convert a line range.
+    Without an argument, convert from X-SAMPA to IPA.
+    Use "ipa" to convert from IPA to X-SAMPA.
+    Without !, copy the result.
+    With !, replace the range in place.
+
+==============================================================================
+NOTES                                                           *xsampa-notes*
+
+The interactive panel uses the "xsampa" filetype. Use that filetype to
+disable plugin behavior inside the converter buffer. For example, with
+nvim-autopairs:
+
+>
+    require("nvim-autopairs").setup({
+      disable_filetype = { "xsampa" },
+    })
+<
+
+The same filetype hook can be used to disable completion or other insert-mode
+automation inside the interactive panel.
+
+==============================================================================
+API                                                               *xsampa-api*
+
+lua require('xsampa').setup(opts)
+    Configure the plugin.
+
+lua require('xsampa').open_converter({
+      \ from = 'xsampa' | 'ipa',
+      \ selection = boolean,
+      \ })
+    Open the interactive converter.
+    When selection = true, the current visual selection is used as the
+    initial panel contents, and confirming writes the converted result back
+    to that selection range.
+
+lua require('xsampa').copy_selection({ from = 'xsampa' | 'ipa' })
+    Copy a converted visual selection.
+
+lua require('xsampa').replace_selection({ from = 'xsampa' | 'ipa' })
+    Replace a converted visual selection.
+
+lua require('xsampa').convert_range(opts)
+    Convert a line range.
+
+vim:tw=78:ts=8:noet:ft=help:norl:

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.version": "LuaJIT",
+  "workspace.library": [
+    "$VIMRUNTIME",
+    "${3rd}/luv/library",
+    "~/.local/share/nvim/lazy"
+  ],
+  "workspace.checkThirdParty": false,
+  "telemetry.enable": false
+}
